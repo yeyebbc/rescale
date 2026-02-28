@@ -88,4 +88,15 @@ echo Switching to an interactive CMD session and executing target commands...
 
 :: Launch an interactive command prompt, run the batch file, change directory, compile, and keep the session open
 :: (The outer quotes are required for cmd.exe to correctly parse inner quotes and the & operator)
-cmd /k ""!SELECTED_VS!" & cd /d "%userprofile%\rescale" & echo [Status] Starting compilation... & if not exist .build mkdir .build & if not exist publish mkdir publish & cl.exe /EHsc /O2 rescale.cpp change-dpi.cpp help.cpp /Fe:publish\Rescale.exe /Fo:.build\ /link /SUBSYSTEM:CONSOLE"
+:: Create a small temporary build script to avoid nested-quote parsing issues
+if exist "%userprofile%\rescale\build-temp.cmd" del "%userprofile%\rescale\build-temp.cmd"
+echo @echo off>"%userprofile%\rescale\build-temp.cmd"
+echo call "!SELECTED_VS!">>"%userprofile%\rescale\build-temp.cmd"
+echo cd /d "%userprofile%\rescale">>"%userprofile%\rescale\build-temp.cmd"
+echo echo [Status] Starting compilation...>>"%userprofile%\rescale\build-temp.cmd"
+echo if not exist .build mkdir .build>>"%userprofile%\rescale\build-temp.cmd"
+echo if not exist publish mkdir publish>>"%userprofile%\rescale\build-temp.cmd"
+echo cl.exe /EHsc /O2 rescale.cpp change-dpi.cpp help.cpp /Fe:publish\Rescale.exe /Fo:.build\ /link /SUBSYSTEM:CONSOLE>>"%userprofile%\rescale\build-temp.cmd"
+
+:: Launch an interactive cmd and run the temporary build script
+cmd /k "%userprofile%\rescale\build-temp.cmd"
