@@ -1,7 +1,3 @@
-:: 它会在常见的 Visual Studio 安装位置中查找 Developer Command Prompt for Visual Studio，
-:: 如果有多个，它应该会让你选一个，然后自动开始编译。
-:: Works on my machine.
-
 @echo off
 setlocal enabledelayedexpansion
 
@@ -10,7 +6,7 @@ echo Shell Environment Detector
 echo ==========================================
 
 :: 寻找 VsDevCmd.bat
-:: Visual Studio 2019 或者更旧版本会在 Program Files (x86) 里面, VS 2022+ 会在 Program Files 里面。
+:: Visual Studio 2019 或者更旧版本会在 Program Files (x86) 里面, VS 2022+ 会在 Program Files 里面. 
 set "idx=0"
 echo [Info] Scanning for VsDevCmd.bat in standard Visual Studio installation paths...
 

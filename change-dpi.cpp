@@ -21,7 +21,7 @@ bool ChangeDPI(int targetDpiPercent)
 
     if (targetIndex == -1)
     {
-        std::cerr << "[!] DPI 缩放倍率不对：" << targetDpiPercent << "%\n";
+        std::cerr << "[!] DPI 缩放倍率不对: " << targetDpiPercent << "%\n";
         return false;
     }
 
@@ -30,14 +30,14 @@ bool ChangeDPI(int targetDpiPercent)
     UINT32 numModeInfoArrayElements = 0;
     if (GetDisplayConfigBufferSizes(QDC_ONLY_ACTIVE_PATHS, &numPathArrayElements, &numModeInfoArrayElements) != ERROR_SUCCESS)
     {
-        std::cerr << "[!] 无法获取显示配置缓冲区大小。\n";
+        std::cerr << "[!] 无法获取显示配置缓冲区大小. \n";
         return false;
     }
     std::vector<DISPLAYCONFIG_PATH_INFO> pathInfo(numPathArrayElements);
     std::vector<DISPLAYCONFIG_MODE_INFO> modeInfo(numModeInfoArrayElements);
     if (QueryDisplayConfig(QDC_ONLY_ACTIVE_PATHS, &numPathArrayElements, pathInfo.data(), &numModeInfoArrayElements, modeInfo.data(), nullptr) != ERROR_SUCCESS)
     {
-        std::cerr << "[!] 无法获取显示配置信息。\n";
+        std::cerr << "[!] 无法获取显示配置信息. \n";
         return false;
     }
     bool success = false;

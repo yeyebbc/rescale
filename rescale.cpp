@@ -60,21 +60,21 @@ int main(int argc, char *argv[])
     }
     catch (...)
     {
-        std::cerr << "[!] 参数不对。\n\n";
+        std::cerr << "[!] 参数不对. \n\n";
         PrintHelp();
-        std::cout << "\n回车以退出……";
+        std::cout << "\n回车以退出...";
         std::cin.get();
         return 1;
     }
 
     // 1. 设定分辨率
-    std::cout << "[*] 正在试图设定分辨率为：" << width << "x" << height << "...\n";
+    std::cout << "[*] 正在试图设定分辨率为: " << width << "x" << height << "...\n";
     ChangeResolution(width, height);
 
     // 2. 设定 DPI 缩放（如果有提供）
     if (hasDpi)
     {
-        std::cout << "[*] 正在试图设定 DPI 缩放为：" << targetDpi << "%...\n";
+        std::cout << "[*] 正在试图设定 DPI 缩放为: " << targetDpi << "%...\n";
         ChangeDPI(targetDpi);
     }
 
